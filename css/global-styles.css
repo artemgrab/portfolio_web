@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css?family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+
+body {
+  background-color: rgba(0, 0, 0, 0.75);
+  font-family: 'Courier New', monospace;
+  color: #FFA128;
+  font-weight: bold;
+  border-radius: 5px;
+  width: calc(100vw - 2em);
+  max-width: 95vw;
+  height: calc(80vh - 2em);
+  max-height: calc(100vh - 10em);
+  background: radial-gradient(circle, hsla(30, 57%, 14%, 1) 0%, hsla(30, 67%, 5%, 1) 100%);
+  animation: txt-shadow 1.6s infinite;
+  font-size: calc(10px + (16 - 10) * ((100vw - 300px) / (1600 - 300)));
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+#terminal-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #FFA128;
+  font-family: inherit;
+  font-size: inherit;
+  min-width: 2ch;
+  caret-color: #FFA128;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  box-shadow: none;
+}
+
+#terminal-input:empty:before {
+  content: '';
+}
+
+.grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.25;
+  background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+  background-size: 200px 200px; /* tile for sharpness */
+  background-repeat: repeat;
+  animation: grain 8s steps(10) infinite;
+}
+
+.terminal-content {
+  margin-top: -90px;
+  padding: 120px;
+  color: #FFA128;
+  font-family: 'Courier New', monospace;
+  font-size: 1.5rem;
+  text-shadow: 0 0 8px #FFA128, 0 0 2px #fff;
+  min-height: 200px;
+}
+
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.7em;
+  background: #FFA128;
+  animation: blink 1s steps(1) infinite;
+  height: 1.2em;
+  vertical-align: bottom;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+.scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 8;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(255, 255, 255, 0.2) 10%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    animation: scanline 6s linear infinite;
+}
+@keyframes scanline {
+    0% {
+        bottom: 100%;
+    }
+    80% {
+        bottom: 100%;
+    }
+    100% {
+        bottom: 0%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Apply the animation to the terminal output text */
+  #terminal-output div {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+/* https://css-tricks.com/snippets/css/animated-grainy-texture/ */
+@keyframes grain {
+    0%, 100% { transform:translate(0, 0) }
+    10% { transform:translate(-5%, -10%) }
+    20% { transform:translate(-15%, 5%) }
+    30% { transform:translate(7%, -25%) }
+    40% { transform:translate(-5%, 25%) }
+    50% { transform:translate(-15%, 10%) }
+    60% { transform:translate(15%, 0%) }
+    70% { transform:translate(0%, 15%) }
+    80% { transform:translate(3%, 35%) }
+    90% { transform:translate(-10%, 10%) }
+  }
